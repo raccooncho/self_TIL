@@ -4,6 +4,11 @@
 
 ## I study python and html
 
+### good site 
+* http://www.pythontutor.com/visualize.html
+
+
+
 
 ### study site
 * py.checkio.org
@@ -11,6 +16,7 @@
 * swexpertacademy.com
 * programmers.co.kr
 * www.acmicpc.net
+* codecademy.com
 
 
 
