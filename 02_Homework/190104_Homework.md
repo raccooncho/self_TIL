@@ -28,3 +28,32 @@
 
 * 원하는 문구를 자동 완성 시켜 줍니다.!
 
+
+
+
+
+#### * 달력만들기
+
+```python
+for i in range(1, 13):
+    print(f'{i} 월\n 일 월 화 수 목 금 토 ')
+    if i in [1, 3, 5, 7, 8, 10, 12]:  # list로 만들어서 안에 있는 값을 찾으니까 됨.
+        n = 31
+    elif i in [2]:    
+        n = 28
+    else:
+        n = 30
+    for d in range(1, n + 1):
+        if d < 10:
+            if d == 7:
+                print(f' {d}  ')
+            else:
+                print(f' {d} ', end='')
+        elif d == n:
+            print(f'{d} \n')
+        elif d % 7:
+            print(f'{d} ', end='')
+        else:
+            print(f'{d}  ')
+```
+
