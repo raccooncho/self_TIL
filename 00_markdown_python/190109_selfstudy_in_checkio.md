@@ -42,3 +42,40 @@ def find_message(text: str) -> str:
 
 
 
+## 3. Three Words
+
+##### space 한칸 간격으로 str과 int가 나열되어 있는 str이 주어진다. str이 연속 3개 이상 존재하면 True 아니면 False를 return 하라.
+
+```python
+def checkio(words: str) -> bool:
+    word = words.split()
+    count = 0
+    num = list(range(0, 10))
+    for w in word:
+        for i in num:
+            if str(i) in w:
+                count = 0
+                break
+        else:
+            count += 1
+            if count == 3:
+                return True
+    return False
+```
+
+
+
+## 4. Index Power
+
+##### 숫자의 list와 number이 하나씩 주어진다. number를 index로 가지는 수의 number제곱을 return 한다. 단, index가 범위를 벗어나면 -1을 return 한다.
+
+```python
+def index_power(array: list, n: int) -> int:
+    if len(array) > n:
+        result = int(array[n] ** n)
+    else:
+        result = -1
+    return result
+
+```
+
