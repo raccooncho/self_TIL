@@ -88,7 +88,7 @@ class Pokemon:
         self.sapp -= 1
 
     def body_attack(self, enemy):
-        print(f'\n{self.name}가 {enemy.name}에게 몸통박치기를 시도하였다.')
+        print(f'{self.name}가 {enemy.name}에게 몸통박치기를 시도하였다.')
         input()
         attack_accuracy = random.choice(self.accuracy_rate)
         if attack_accuracy == 1:
@@ -104,7 +104,7 @@ class Pokemon:
             self.n_attack_motion(enemy, 1)
     
     def e_attack_uneffective(self, enemy):
-        print(f'\n{self.name}가 {enemy.name}에게 {self.e_attack}를 시도하였다.')
+        print(f'{self.name}가 {enemy.name}에게 {self.e_attack}를(을) 시도하였다.')
         input()
         attack_accuracy = random.choice(self.accuracy_rate)
         if attack_accuracy == 1:
@@ -115,7 +115,7 @@ class Pokemon:
                 input()
                 self.e_attack_motion(enemy, 2)
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를(을) 사용할 수 없다.')
                 input()
                 print('대신 몸통 박치기를 하였다.')
                 input()
@@ -128,7 +128,7 @@ class Pokemon:
                 input()
                 self.e_attack_motion(enemy, 1)
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를(을) 사용할 수 없다.')
                 input()
                 print('대신 몸통 박치기를 하였다.')
                 input()
@@ -141,7 +141,7 @@ class Pokemon:
             input()
 
     def e_attack_normal(self, enemy):
-        print(f'\n{self.name}가 {enemy.name}에게 {self.e_attack}를 시도하였다.')
+        print(f'{self.name}가 {enemy.name}에게 {self.e_attack}를(을) 시도하였다.')
         input()
         attack_accuracy = random.choice(self.accuracy_rate)
         if attack_accuracy == 1:
@@ -150,7 +150,7 @@ class Pokemon:
                 input()
                 self.e_attack_motion(enemy, 4)
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를(을) 사용할 수 없다.')
                 input()
                 print('대신 몸통 박치기를 하였다.')
                 input()
@@ -161,7 +161,7 @@ class Pokemon:
             if self.vapp > 0:
                 self.e_attack_motion(enemy, 2)
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를(을) 사용할 수 없다.')
                 input()
                 print('대신 몸통 박치기를 하였다.')
                 input()
@@ -174,7 +174,7 @@ class Pokemon:
             input()
 
     def e_attack_effective(self, enemy): 
-        print(f'\n{self.name}가 {enemy.name}에게 {self.e_attack}를 시도하였다.')
+        print(f'{self.name}가 {enemy.name}에게 {self.e_attack}를(을) 시도하였다.')
         input()
         attack_accuracy = random.choice(self.accuracy_rate)
         if attack_accuracy == 1:
@@ -185,7 +185,7 @@ class Pokemon:
                 input()
                 self.e_attack_motion(enemy, 8)
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를(을) 사용할 수 없다.')
                 input()
                 print('대신 몸통 박치기를 하였다.')
                 input()
@@ -198,7 +198,7 @@ class Pokemon:
                 input()
                 self.e_attack_motion(enemy, 4)
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.e_attack}를(을) 사용할 수 없다.')
                 input()
                 print(f'대신 몸통 박치기를 하였다.')
                 input()
@@ -219,7 +219,7 @@ class Pokemon:
             self.e_attack_normal(enemy)
     
     def s_attack_uneffective(self, enemy):
-        print(f'\n{self.name}가 {enemy.name}에게 {self.s_attack}를 시도하였다.')
+        print(f'{self.name}가 {enemy.name}에게 {self.s_attack}를(을) 시도하였다.')
         input()
         attack_accuracy = random.choice(self.accuracy_rate)
         if attack_accuracy == 1:
@@ -233,7 +233,7 @@ class Pokemon:
                 if self.s_attack_s == '동상':
                     enemy.fcount = 3
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를(을) 사용할 수 없다.')
                 input()
                 print('대신 몸통 박치기를 하였다.')
                 input()
@@ -249,7 +249,7 @@ class Pokemon:
                 if self.s_attack_s == '동상':
                     enemy.fcount = 3
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를(을) 사용할 수 없다.')
                 input()
                 print('대신 몸통 박치기를 하였다.')
                 input()
@@ -262,7 +262,7 @@ class Pokemon:
             input()
         
     def s_attack_normal(self, enemy):
-        print(f'\n{self.name}가 {enemy.name}에게 {self.s_attack}를 시도하였다.')
+        print(f'{self.name}가 {enemy.name}에게 {self.s_attack}를(을) 시도하였다.')
         input()
         attack_accuracy = random.choice(self.accuracy_rate)
         if attack_accuracy == 1:
@@ -274,7 +274,7 @@ class Pokemon:
                 if self.s_attack_s == '동상':
                     enemy.fcount = 3
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를(을) 사용할 수 없다.')
                 input()
                 print('대신 몸통 박치기를 하였다.')
                 input()
@@ -288,7 +288,7 @@ class Pokemon:
                 if self.s_attack_s == '동상':
                     enemy.fcount = 3
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를(을) 사용할 수 없다.')
                 input()
                 print('대신 몸통 박치기를 하였다.')
                 input()
@@ -301,7 +301,7 @@ class Pokemon:
             input()
     
     def s_attack_effective(self, enemy):
-        print(f'\n{self.name}가 {enemy.name}에게 {self.s_attack}를 시도하였다.')
+        print(f'{self.name}가 {enemy.name}에게 {self.s_attack}를(을) 시도하였다.')
         input()
         attack_accuracy = random.choice(self.accuracy_rate)
         if attack_accuracy == 1:
@@ -315,7 +315,7 @@ class Pokemon:
                 if self.s_attack_s == '동상':
                     enemy.fcount = 3
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를(을) 사용할 수 없다.')
                 input()
                 print('대신 몸통 박치기를 하였다.')
                 input()
@@ -331,7 +331,7 @@ class Pokemon:
                 if self.s_attack_s == '동상':
                     enemy.fcount = 3
             else:
-                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를 사용할 수 없다.')
+                print(f'{self.name}는 pp가 부족하여 더 이상 {self.s_attack}를(을) 사용할 수 없다.')
                 input()
                 print('대신 몸통 박치기를 하였다.')
                 input()
@@ -353,19 +353,39 @@ class Pokemon:
     
     def status_motion(self, enemy):
         if self.status == '마비':
-            print(f'{self.name}은 마비되어 움직이기 힘들다.')
+            print(f'\n{self.name}는 마비되어 움직이기 힘들다.')
+            input()
         elif self.status == '동상':
             if fcount > 0:
-                fcount -= 1
-                print(f'{self.name}은 동상에 걸려 움직일 수 없다.')
+                fcount -= 1 
+                print(f'\n{self.name}는 동상에 걸려 움직일 수 없다.')
+                input()        
             else:
                 self.status = 'nomal'
-                print(f'{self.name}의 동상이 풀렸다.')
+                print(f'\n{self.name}의 동상이 풀렸다.')
+                input()
         elif self.status == '화상':
-            print(f'{self.name}은 화상에 걸려 {enemy.attack}의 데미지를 입었다.')
+            print(f'\n{self.name}는 화상에 걸려 {enemy.attack}의 데미지를 입었다.')
+            input()
+            self.HP -= enemy.attack
         elif self.status == '흡수':
-            print(f'{enemy.name}은 {self.name}의 체력을 {enemy.attack * 0.5}만큼 흡수했다. ')
+            print(f'\n{enemy.name}는 {self.name}의 체력을 {enemy.attack * 0.5}만큼 흡수했다. ')
+            input()
+            self.HP -= enemy.attack * 0.5
+            enemy.HP += enemy.attack * 0.5
     
+    def pal_effect(self, enemy):
+        chance = random.choice([1, 2])
+        if chance == 1:
+            print(f'{self.name}는 몸이 저릿저릿 해서 공격에 실패했다.')
+            input()
+        else: 
+            self.battle_order(enemy, self.attack_num)
+
+    def froz_effect(self, enemy):
+        print(f'{self.name}의 몸이 약간 녹은듯 하지만 공격엔 실패했다.')
+        input()
+
     def battle_order(self, enemy, aattack):
         if aattack == 1:
             self.body_attack(enemy)
@@ -373,7 +393,7 @@ class Pokemon:
             self.element_attack(enemy)
         elif aattack == 3:
             self.status_attack(enemy)
-        print(f'{enemy.name}의 체력이 {enemy.HP} 남았다.')
+        print(f'{enemy.name}의 체력이 {enemy.HP} 남았다.\n')
         input()
 
     def input_attack(self, enemy):
@@ -402,7 +422,7 @@ class Pokemon:
                 while self.attack_num not in ['1']:
                     self.attack_num = input('|공격을 선택하세요| ')
         self.attack_num = int(self.attack_num)
-        print('\n-------------------------------------------------')
+        print('\n-------------------------------------------------\n')
     
     def input_enemy_attack(self):
         if self.level >= 8:
@@ -412,35 +432,46 @@ class Pokemon:
         else:
             self.attack_num = 1
     
+    def status_inbattle(self, enemy):
+        self.status_motion(enemy)
+        if self.status == '마비':
+            self.pal_effect(enemy)
+        elif self.status == '동상':
+            self.froz_effect(enemy)
+        else:
+            self.battle_order(enemy, self.attack_num)
+    
     def battle(self, enemy):
         status = ['nomal', '마비', '동상', '화상', '흡수']
         print(f'\n앗! 야생의 {enemy.name}(lv.{enemy.level})을 만났다!!')
         input()
+
         while self.check_status() and enemy.check_status():
             self.input_attack(enemy)
             enemy.input_enemy_attack()
             if self.speed > enemy.speed:
-                self.battle_order(enemy, self.attack_num)
+                self.status_inbattle(enemy)
                 if enemy.check_status() == False:
                     break   
-                enemy.battle_order(self, enemy.attack_num)
+                enemy.status_inbattle(self)
             elif self.speed == enemy.speed:
-                order = random.choice([1, 2, 3])
+                order = random.choice([1, 2])
                 if order == 1:
-                    self.battle_order(enemy, self.attack_num)
+                    self.status_inbattle(enemy)
                     if enemy.check_status() == False:
                         break   
-                    enemy.battle_order(self, enemy.attack_num)
+                    enemy.status_inbattle(self)
                 else:
-                    enemy.battle_order(self, enemy.attack_num)
+                    enemy.status_inbattle(self)
                     if self.check_status() == False:
                         break   
-                    self.battle_order(enemy, self.attack_num)
+                    self.status_inbattle(enemy)
             else:
-                enemy.battle_order(self, enemy.attack_num)
+                enemy.status_inbattle(self)
                 if self.check_status() == False:
                     break   
-                self.battle_order(enemy, self.attack_num)
+                self.status_inbattle(enemy)
+        
         if self.check_status() == False:
             print('---------------------------------------')
             print(f'\n{self.name}는 더이상 싸울 힘이 없다.')
@@ -463,13 +494,10 @@ class Pokemon:
             print('---------------------------------------')
             
 
-a = Pokemon('피카츄', 5, 'elec')
-b = Pokemon('꼬북이', 1, 'water')
-c = Pokemon('파이리', 6, 'fire')
+a = Pokemon('피카츄', 10, 'elec')
+b = Pokemon('꼬북이', 10, 'water')
+c = Pokemon('파이리', 10, 'fire')
 
 a.battle(b)
-a.battle(b)
-a.battle(b)
-a.battle(b)
-a.battle(b)
+
 a.battle(c)
