@@ -37,7 +37,7 @@
 * block
   * default width는 화면 전체다.(100%) 다만 width를 설정할 수 있다.
   * default height는 주변 text와 동일하다.
-  * / <h1> ~ <h6>, <p>, <div>, <footer>같은 element는 block를 default로 가진다.
+  * ` <h1> ~ <h6>, <p>, <div>, <footer>`같은 element는 block를 default로 가진다.
 * inline-block
   * inline과 block의 혼합형이다.
   * inline처럼 주변 다른 요소와 나란히 나타날 수 있지만, block처럼 width와 height를 조절할 수 있다.

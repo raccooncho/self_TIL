@@ -543,3 +543,4 @@ d = Pokemon('이상해씨', 10, 'leef')
 d.battle(b)
 
 d.battle(c)
+
