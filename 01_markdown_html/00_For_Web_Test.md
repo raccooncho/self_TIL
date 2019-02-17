@@ -37,6 +37,7 @@ css에 같은 내용 포함..
   * default값은 medium none color이다.
     * color는 해당 box의 현재 색을 의미한다. (글자색..)
   * border의 코너는 border-radius로 모양을 변경할 수 있다.
+    * `border-radius: 15% 75%;`처럼 두개의 숫자를 나열하면 앞의 숫자는 ↘방향에 해당하고 뒤의 숫자는 ↙방향에 해당한다.
 * `Margin` : border와 box 바깥 사이의 공간이다
   * 기본적으로 padding과 같다.
   * auto를 설정할 수 있다. (중앙 정렬..)
@@ -50,7 +51,7 @@ css에 같은 내용 포함..
   * hidden : overflow된 content를 보이지 않게 한다.
   * scroll : scroll을 생성해서 overflow된 content를 볼 수 있게 한다.
   * visible : overflow된 content를 표시할 수 있는 구역을 벗어나서 볼 수 있게 설정한다. default 값 이다.
-* `Visibility` : 원하는 element를 화면에서 사라제기 할 수 있다.
+* `Visibility` : 원하는 element를 화면에서 사라지게 할 수 있다.
   * hidden : element를 가린다.
   * visible : element를 화면에 나타낸다.
   * display: none의 경우 화면에서 완전 삭제 하지만, 
@@ -185,7 +186,7 @@ css에 같은 내용 포함..
 
 
 
-### 3) inline / block
+### 3) Display(inline / block)
 
  * `block`
     * 항상 새로운 라인에서 시작한다.
@@ -227,12 +228,16 @@ css에 같은 내용 포함..
 ### *) Position
 
 * static : default값이다.
-* relative : `position:relative`에서는 `top`, `bottom`, `left`, `right`값을 설정하여 기준점에서 멀어지게 설정할 수 있다.
+* relative : `position:relative`에서는 `top`, `bottom`, `left`, `right`값을 설정하여 원래 차지하고 있던 위치를 기준으로 이동할 수 있다.
+  * 이동하기 전에 차지하고 있던 공간은 blank가 되어도 다른 element가 차지하지 못한다.
 * fixed : `position:fixed`에서도 relative와 같이 `top`, `bottom`, `left`, `right`을 설정할 수 있다.
   * page의 스크롤을 이동해도 화면에 고정되어 스크롤과 같이 움직이지 않는다.
 * absolute : `position:absolute`에서도 relative와 같이 `top`, `bottom`, `left`, `right`을 설정할 수 있다.
   * 다른 요소의 위치를 무시하고 움직인다.(겹치게 할 수 있다.)
   * 그래서 z-index를 설정하여서 우선순위를 정해주어야 한다.
+  * 가장 가까운 곳에 위치한 parent element를 기준으로 움직인다.
+    * static인 parent element는 고려하지 않는다.
+    * parent element가 없을 경우 본문(document body)이 기준이 된다.
 
 
 
@@ -246,9 +251,11 @@ css에 같은 내용 포함..
   * .text-right : 오른쪽 정렬
   * .text-sm-left, .text-md-left, .text-lg-left, .text-xl-left 등 특정 브라우저 크기에서 적용되는 정렬도 설정할 수 있다.
 * `Text wrapping and overflow`
-  * .text-nowrap : `style="width: 8rem"`과 같이 너비를 같이 지정해 주면 그만큼 wraping하는 블럭이 글씨를 감싼다..
+  * .text-wrap : default값. content가 width를 넘어가면 줄바꿈하게 된다.
+  * .text-nowrap : width를 넘어가는 content가 줄바꿈 하지 않고 계속 해당하는 줄에 나타난다.
   * .text-truncate : 긴 글의 앞부분만 표기해준다.
     * `display: inline-block` or `display: block`이 요구된다.
+      * span과 같이 inline element의 경우 display를 inline-block나 block로 설정해 주어야 한다!
 * `Text transform`
   * .text-lowercase : 모두 소문자로 바꾼다.
   * .text-uppercase: 모두 대문자로 바꾼다.
