@@ -2,6 +2,8 @@
 
 HTTP(s) : Hyper Text Transfer Protocol
 
+
+
 ### 1) Semantic Tags
 
  * `header` : 문서 전체나 섹션의 헤더
@@ -12,9 +14,13 @@ HTTP(s) : Hyper Text Transfer Protocol
  * `footer` : 문서 전체나 섹션의 풋터
  * non semantic element :  `div`, `span`, etc...
 
+
+
 ### 2) Units
 
 css에 같은 내용 포함..
+
+
 
 ### 3) Box model
 
@@ -49,6 +55,8 @@ css에 같은 내용 포함..
   * visible : element를 화면에 나타낸다.
   * display: none의 경우 화면에서 완전 삭제 하지만, 
     visibility: hidden의 경우에는 화면에 보이지 않을 뿐 해당하는 공간은 공백으로 남아있게 된다.
+
+
 
 ### 4) Inline - block
 
@@ -110,6 +118,8 @@ css에 같은 내용 포함..
  * `vh` : 높이의 1/100
  * `vmin` : 너비 또는 높이 중 작은 쪽의 1/100
  * `vmax`: 너비 또는 높이 중 큰 쪽의 1/100
+
+
 
 ### 2) 선택자(selector)
 
@@ -173,6 +183,8 @@ css에 같은 내용 포함..
   * `h1::after { content: "CSS3!"; }` : h1 element 뒤에 content가 붙음, content 는 드래그로 선택되지 않음
   * `::selection` : 선택된 경우(마우스 클릭 or drag)에 적용됨. (color, background, cursor, outline)
 
+
+
 ### 3) inline / block
 
  * `block`
@@ -196,6 +208,8 @@ css에 같은 내용 포함..
  * `None`
     * 해당 요소를 화면에 표시하지 않는다.(공간조차 사라진다.)
 
+
+
 ### *) Float
 
 * left 혹은 right로 element를 이동시킬 때 사용한다.
@@ -207,6 +221,8 @@ css에 같은 내용 포함..
   * right : right쪽에 있는 element가 같은 containing안에 있는 다른 element를 건들지 않는다.
   * both : 양쪽에 있는 element들이 같은 containing안에 있는 다른 element를 건들지 않는다.
   * none : element가 양쪽 element를 모두 건들 수 있다.
+
+
 
 ### *) Position
 
@@ -243,6 +259,8 @@ css에 같은 내용 포함..
   * .font-weight-light : light weight로 바꾼다.
   * .font-italic : italic font로 바꾼다.
 
+
+
 ### 2) Color
 
 * `Text color`
@@ -266,6 +284,8 @@ css에 같은 내용 포함..
   * .bg-light : 흰색(보다 약간 어두운 색)
   * .bg-dark : 검정색
   * .bg-white : 흰색
+
+
 
 ### 3) Spacing
 
@@ -302,6 +322,8 @@ css에 같은 내용 포함..
   * auto : set margin auto
     * display:block과 width값이 존재할 경우 .mx-auto를 하면 horizontal center로 align할 수 있다.
 
+
+
 ### 4) 컴포넌트들 이름과 요소 매칭
 
 (참고하면 좋은 사이트 - https://hackerthemes.com/bootstrap-cheatsheet/)
@@ -329,6 +351,8 @@ css에 같은 내용 포함..
   * 진행상태를 올려주는 progress bar
   * 스크롤 이동에 따라 현재 위치를 표시해주는 scrollpy
 * Tooltips : 버튼에 마우스를 올렸을 때 안내 메세지를 생성
+
+
 
 ### 5) flex 기초(flexboxfroggy.com)
 
@@ -362,6 +386,30 @@ css에 같은 내용 포함..
 
 
 # 4. Django
+
+### *)Django-admin
+
+* $django-admin startproject MYMODEL
+  * MYMODEL project를 생성한다.
+* $django-admin startapp mymodel
+  * mymodel app을 생성한다.
+
+
+
+### *) manage.py
+
+* $python manage.py runserver $IP:$PORT
+  * (C9에서) 서버를 실행시킨다.
+* $python manage.py makemigrations mymodel
+  * mymodel 의 model을 migration한다.
+* $python manage.py migrate
+  * migration한 model을 적용한다.
+* $python manage.py migrate mymodel zero
+  * mymodel model을 초기화 한다.
+* python manage.py createsuperuser
+  * 관리자계정을 생성한다.
+
+
 
 ### 1) views
 
@@ -442,6 +490,8 @@ css에 같은 내용 포함..
 
   index page로 redirect한다.
 
+
+
 ### 2) 템플릿(dtl)
 
 * mkdir -p mymodel/templates/mymodel 로 새 폴더를 생성한다.
@@ -479,6 +529,8 @@ css에 같은 내용 포함..
   ```
 
   하지만 보안을 위해 {% csrf_token %}은 필수적으로 입력해야만 한다.
+
+
 
 ### 3) urls
 
