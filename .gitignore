@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+.idea/
+venv/
+*.sqlite3
+.idea/
+__pycache__
+media/
