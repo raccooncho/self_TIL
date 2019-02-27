@@ -46,6 +46,16 @@
 
   ​	( Droid Serif 와 Playfair Display 가 사용 가능해진다. font-family에서 사용하면 된다. - '|'로 각 폰트가 구분되고 폰트 이름에서 띄어쓰기는 '+'로 표현됨 )
 
+  * 없는 font의 경우 다음 예비 font로 넘어간다..
+
+  ```css
+  font-family: "Times New Roman", Times, serif;
+  ```
+
+  
+
+  
+
 * `font-size`
 
 * `font-weight`
@@ -74,7 +84,7 @@
   * 0 ~ 1 사이의 투명도 조절
   * 1에 가까울 수록 불투명 (0이 완전 투명)
 
-* _나올리없는 그것_  : word-spacing (default == 0.25em) [단어간] / letter-spacing [자간] / text-decoration [줄긋는거..알필요 x] / transition [애니메이션]
+* _나올리없는 그것_  : word-spacing (default == 0.25em) [단어간] / letter-spacing [자간] / text-decoration (overline, line-through, underline) [줄긋는거..알필요 x] / transition [애니메이션] / 
 
 * inline tag
 
