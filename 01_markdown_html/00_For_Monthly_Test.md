@@ -26,7 +26,7 @@
 
 * `font-family`
 
-  * font-family 의 이름이 두 당너 이상일 경우에는 " "안에 font 이름을 적어준다.
+  * font-family 의 이름이 두 단어 이상일 경우에는 " "안에 font 이름을 적어준다.
 
   ```css
   font-family: "Courier New";
@@ -70,7 +70,13 @@
   * 0 ~ 1 사이의 투명도 조절
   * 1에 가까울 수록 불투명 (0이 완전 투명)
 
-* _나올리없는 그것_  : word-spacing (default == 0.25em) [단어간] / letter-spacing [자간]
+* _나올리없는 그것_  : word-spacing (default == 0.25em) [단어간] / letter-spacing [자간] / text-decoration [줄긋는거..알필요 x] / transition [애니메이션]
+
+* inline tag
+
+  * `<del> </del>` : 삭제선
+  * `<ins> </ins>` : 밑줄
+  * `<em> </em>` : 이태릭체
 
 ### 3) Box model
 
@@ -100,9 +106,6 @@
 
 * visibility : { hidden / visible / collapse }
   * display: none은 공간이 사라짐 visibility: hidden은 내용만 안보임
-* transition -> 애니메이션;;
-  * transition-property : width, background-color;등으로 trasition을 하는 property를 지정한다.
-  * transition-duration: 1.2s, 3s; 으로 지연 시간을 지정 가능
 
 
 
@@ -407,5 +410,53 @@ class Comment(models.Model):
     like = models.IntegerField(default=0)
     def __str__(self):
         return f'{self.article.title}: {self.content}'
+```
+
+
+
+### 6) 조건문, 반복문
+
+* 조건문
+
+```html
+{% extends 'base.html' %}
+{% block title %}
+    {{ name }}
+{% endblock %}
+    
+{% block content %}
+    <h1>이름 : {{ name }}</h1>
+        {% if name in ss3 %}
+            <h3>나이 : 28</h3>
+        {% else %}
+            <h3>우리반 사람이 아닙니다.</h3>
+        {% endif %}
+{% endblock %}
+
+```
+
+
+
+* 반복문
+
+```html
+{% extends 'base.html' %}
+{% block title %}
+    index
+{% endblock %}
+    
+{% block content %}
+    <h1>우리반정보</h1>
+    <h3>Teacher</h3>
+    <ul><li>Name</li></ul>
+    <h3>Student</h3>
+    <ul>
+        {% for s in ss3 %}
+            <li> {{ s }} </li>
+        {% endfor %}
+    </ul>
+    
+{% endblock %}
+
 ```
 
