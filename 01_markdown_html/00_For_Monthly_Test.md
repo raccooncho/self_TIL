@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # 1. HTML / CSS
 
 ```
@@ -53,7 +57,7 @@
 
 * `text-align` : right / center / left
 
-* `text-transform` : uppercase / lowercase
+* `text-transform` : uppercase / lowercase / capitalize
 
 * `line-height` : 줄간 간격을 조절할 수 있다.
 
@@ -145,9 +149,9 @@
   </div>
   ```
 
-* .align-items-{start / center / end} : 세로정렬 (.row에 같이 쓰는 클래스)
+* _.align-items-{start / center / end} : 세로정렬 (.row에 같이 쓰는 클래스)_ : **무시**
 
-  * .align-self-{start / center / end} : 각자 돌게 할 수 있따(.col에 같이 쓰는 클래스)
+  * _.align-self-{start / center / end} : 각자 돌게 할 수 있다(.col에 같이 쓰는 클래스)_ : **무시**
 
 * .justify-content-{start / center / end / around / between(양끝에 딱 붙음)} : 가로정렬 (.row에 같이 쓰는 클래스)
 
@@ -161,7 +165,7 @@
   * 비슷하게 왼쪽 오른쪽에 자동으로 빈 column을 생성하기 위해
     ml-{breakpoint}-auto / mr-{breakpoint}-auto 등을 사용할 수 있다.
 
-* Nesting (.col안에 다시 .row > .col을 생성해주면 12칸의 column을 가진 row를 사용할 수 있다.)
+* _Nesting (.col안에 다시 .row > .col을 생성해주면 12칸의 column을 가진 row를 사용할 수 있다.)_ : **무시**
 
 
 
