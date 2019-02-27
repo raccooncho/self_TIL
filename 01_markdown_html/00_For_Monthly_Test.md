@@ -18,6 +18,10 @@
 
 
 
+#### %) inline에서 특정 부분만 class를 부여하려면 span tag를 사용!
+
+
+
 ### 2) 완전 basic
 
 * `font-family`
@@ -27,6 +31,16 @@
   ```css
   font-family: "Courier New";
   ```
+
+  * linking font-family
+
+  ```html
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Playfair+Display" type="text/css" rel="stylesheet">
+  </head>
+  ```
+
+  ​	( Droid Serif 와 Playfair Display 가 사용 가능해진다. font-family에서 사용하면 된다. - '|'로 각 폰트가 구분되고 폰트 이름에서 띄어쓰기는 '+'로 표현됨 )
 
 * `font-size`
 
@@ -56,9 +70,13 @@
   * 0 ~ 1 사이의 투명도 조절
   * 1에 가까울 수록 불투명 (0이 완전 투명)
 
+* _나올리없는 그것_  : word-spacing (default == 0.25em) [단어간] / letter-spacing [자간]
+
 ### 3) Box model
 
 * width : 너비 조절
+  * max-width
+  * min-width
 * height : 높이 조절
 * Padding : content와 border사이 공간
   * `paddig-top` `padding-right` `padding-left` `padding-bottom`
@@ -66,7 +84,7 @@
   * `padding` : 0 0 (top bottom / right left)
 * Border : 경계선
   * width : thin, medium, thick(px단위 등도 가능)
-  * style : none, dotted, solid
+  * style : none, dotted, solid ( + dashed, double, groove, ridge, inset, outset, hidden)
   * color
   * default : medium none color
   * `border-radius` : 15% 75% -> ↘  ↙
@@ -76,9 +94,15 @@
 * Overflow : hidden, scroll, visible(default)
 * Visibility : hidden, visible
 
+* z-index : 1~10 (클수록 우선순위 큼)
 
+### 4) visibility
 
-
+* visibility : { hidden / visible / collapse }
+  * display: none은 공간이 사라짐 visibility: hidden은 내용만 안보임
+* transition -> 애니메이션;;
+  * transition-property : width, background-color;등으로 trasition을 하는 property를 지정한다.
+  * transition-duration: 1.2s, 3s; 으로 지연 시간을 지정 가능
 
 
 
@@ -160,7 +184,7 @@
 
 
 
-# 3. Django
+# 3. Django ( 귀차나서 comment같이있는거 복붙)
 
 ```
 - [R]ead(List, Detail), [D]elete(Delete) 중에 하나를 작성하는 문제 출제.
@@ -316,5 +340,72 @@ def article_delete(request, article_id):
         article = Article.objects.get(id=article_id)
         article.delete()
     return redirect('simple_board:article_list')
+```
+
+
+
+
+
+### 4) urls.py
+
+* import
+
+```python
+from django.urls import path
+from . import views
+```
+
+
+
+* urlpatterns
+
+```python
+app_name = 'simple_board'
+
+urlpatterns = [
+# URL about articles
+    path('', views.article_list, name='article_list'),
+    path('<int:article_id>/', views.article_detail, name='article_detail'),
+    path('create/', views.article_create, name='article_create'),
+    path('<int:article_id>/update/', views.article_update, name='article_update'),
+    path('<int:article_id>/delete/', views.article_delete, name='article_delete'),
+# URL about comments
+    path('<int:article_id>/comments/create/', views.comment_create, name='comment_create'),
+    path('<int:article_id>/comments/<int:comment_id>/delete/', views.comment_delete, name='comment_delete'),
+    path('<int:article_id>/comments/<int:comment_id>/edit/', views.comment_update, name='comment_update'),
+    ]
+```
+
+
+
+
+
+### 5) models.py
+
+* import
+
+```python
+from django.db import models
+```
+
+
+
+* class 지정
+
+```python
+class Article(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField(default='')
+    like = models.IntegerField(default=0)
+    def __str__(self):
+        return f'{self.id}: {self.title}'
+    
+    
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    content = models.CharField(max_length=200)
+    like = models.IntegerField(default=0)
+    def __str__(self):
+        return f'{self.article.title}: {self.content}'
 ```
 
