@@ -95,7 +95,70 @@
 
 
 
-### 1) 
+### 1) grid system
+
+* 기본 12칸의 column을 구성
+
+  * 각 column사이엔 padding이 숨어져 있어서 없애기 위해선 `.no-gutters`를 추가하면 된다.
+
+* 기본 단계
+
+  * .container -> .row -> col
+    * .container-fluid를 사용하면 좌우 margin이 사라져서 화면이 꽉 찬다.
+
+  ```html
+  <div class="container">
+      <div class="row">
+          <div class="col">
+              <h1>
+                  말이 안되는 시험이다;;
+              </h1>
+          </div>
+      </div>
+  </div>
+  ```
+
+* .align-items-{start / center / end} : 세로정렬 (.row에 같이 쓰는 클래스)
+
+  * .align-self-{start / center / end} : 각자 돌게 할 수 있따(.col에 같이 쓰는 클래스)
+
+* .justify-content-{start / center / end / around / between(양끝에 딱 붙음)} : 가로정렬 (.row에 같이 쓰는 클래스)
+
+* .order-{1 ~ 12}로 순서를 정할 수 있음 (밑에 있어도 같은 .row에 있으면 .order-1이 .order-12보다 왼쪽에 출력됨) ( col에 같이 쓰는 클래스)
+
+  * .order-first / .order-last도 가능
+
+* .offset-{breakpoint}-{0~} : 마지막에 적힌 숫자의 column만큼 앞에 빈 column을 생성 (.col과 같이 쓰는 클래스)
+
+  * breakpoint마다 초기화를 위해 .offset-md-0같이 0을 입력해 주어야 한다.
+  * 비슷하게 왼쪽 오른쪽에 자동으로 빈 column을 생성하기 위해
+    ml-{breakpoint}-auto / mr-{breakpoint}-auto 등을 사용할 수 있다.
+
+* Nesting (.col안에 다시 .row > .col을 생성해주면 12칸의 column을 가진 row를 사용할 수 있다.)
+
+
+
+### 2) Card
+
+* 카드 생성 : .card ( style="width: 18rem;"과 같이 너비를 같이 줄 수 있다.)
+
+```html
+<div class="card" style="width: 18rem;">
+```
+
+* 카드 이미지: .card > img (class="card-img-top") (보통 카드 바디보다 이미지가 위에 있으므로 카드바디보다 먼저 작성해준다.)
+  * card-img를 주면 body와 이미지가 overlap된다.
+* 카드 바디 : .card > .card-body 안에 h1~h6, p, a tag등 을 활용해서 내용을 채우면 된다.
+  * .card-title : 카드 타이틀(h5태그정도..)
+  * .card-subtitle :카드 부제목 (h6태그정도..)
+  * .card-text : 카드 내용 (p태그..)
+  * .card-link : 링크 (a태그..)
+
+* 카드 헤더 : .card > .card-header
+
+
+
+
 
 # 3. Django
 
@@ -109,4 +172,149 @@
 
 
 
-### 1) 
+### 0) import in views.py
+
+```python
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Article, Comment  # model import
+```
+
+
+
+### 1) base.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'simple_board/css/bootstrap.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'simple_board/css/index.css' %}" type="text/css" />
+    <title>Simple Board</title>
+</head>
+<body>
+    {% include 'simple_board/_navbar.html' %}
+    <div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
+    {% include 'simple_board/_footer.html' %}
+    <script type="text/javascript" src="{% static 'simple_board/js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'simple_board/js/index.js' %}"></script>
+</body>
+</html>
+```
+
+
+
+### 2) Read
+
+####  list
+
+* html
+
+  ```html
+  {% extends 'simple_board/base.html' %}
+  {% load static %}
+  
+  {% block body %}
+  <h1>All Articles</h1>
+  <img src="{% static 'simple_board/images/header.jpg' %}" alt="header"></img>
+  {% if articles %}
+  <ol>
+      {% for article in articles %}
+          <li><a href="{% url 'simple_board:article_detail' article.id %}"> {{ article.title }} </a> </li>
+      {% endfor %}
+  </ol>
+  <a href="{% url 'simple_board:article_create' %}"><button>새로 만들기</button></a>
+  {% endif %}
+  {% endblock %}
+  ```
+
+  
+
+* view
+
+  ```python
+  def article_list(request):
+      articles = Article.objects.all()
+      context = { 'articles': articles }
+      return render(request, 'simple_board/list.html', context)
+  ```
+
+  
+
+#### detail
+
+* html
+
+  ```html
+  {% extends 'simple_board/base.html' %}
+  
+  {% block body %}
+  <h1>{{ article.title }}</h1>
+  <p>
+      {{ article.content }}
+  </p>
+  <hr />
+  <div>
+      <a href="{% url 'simple_board:article_list' %}">
+          <button>목록으로 가기</button>
+      </a>
+  </div>
+  <div>   
+      <a href="{% url 'simple_board:article_update' article.id %}">
+          <button>수정하기</button>
+      </a>
+  </div>
+  <form action="{% url 'simple_board:article_delete' article.id %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="삭제하기" onclick="return confirm('정말로 삭제 하시겠습니까?')">   
+  </form>
+  <hr />
+  
+  {% include 'simple_board/_comment.html' with title=article.title %}
+  
+  {% endblock %}
+  ```
+
+  
+
+* view
+
+  ```python
+  def article_detail(request, article_id):
+      article = get_object_or_404(Article, id=article_id)
+      comments = reversed(article.comment_set.all())
+      context = { 'article': article, 'comments': comments }
+      return render(request, 'simple_board/detail.html', context)
+  ```
+
+  
+
+### 3) Delete
+
+* html
+
+```html
+<form action="{% url 'simple_board:article_delete' article.id %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="삭제하기" onclick="return confirm('정말로 삭제 하시겠습니까?')">   
+</form>
+```
+
+
+
+* view
+
+```python
+def article_delete(request, article_id):
+    if request.method == 'POST':
+        article = Article.objects.get(id=article_id)
+        article.delete()
+    return redirect('simple_board:article_list')
+```
+
