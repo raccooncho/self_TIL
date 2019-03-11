@@ -76,7 +76,30 @@ print(arr)
 
 
 
-
+T = int(input())
+for t in range(T):
+    N, M = map(int, input().split())
+    answer = []
+    for m in range(M):
+        arr = list(map(int, input().split()))
+        dum = []
+        if len(answer) == 0:
+            answer += arr
+        else:
+            for i in range(len(answer)):
+                if answer[i] > arr[0]:
+                    arr.append(answer[i])
+                else:
+                    dum.append(answer[i])
+        if len(arr) >= 10:
+            answer = arr
+        else:
+            answer = dum + arr
+    result = []
+    for i in range(1, 11):
+        result.append(answer[-i])
+    result = ' '.join(result)
+    print('#{}{}'.format(t+1, result))
 
 
 
