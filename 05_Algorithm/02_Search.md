@@ -111,12 +111,10 @@ def binary_search(arr, start, end, key):
 
 
 
-### 3. KMP 알고리즘
-
-**잠시포기**
+### 3. KMP 알고리즘 _(안하는게 낫다..)_
 
 ```python
-p = 'abcdabcef'                                                                       # pattern
+p = 'abcdabcdaefabc'               # pattern
 t = 'alksdabcdabcflaskjflkabcdjsaflkjasdkdsajfabcdabceflksadjabcdaksfjffsdaf'      # text
 
 
@@ -128,7 +126,7 @@ next[0] = -1 # 맨 앞을 시작의 의미로 -1로 설정
 i, j = 0, -1
 while i < m:
     while j >= 0 and p[j] != p[i]: # j 가 시작값인 -1이 되지 않기 위함..
-        j = next[j]
+        j = next[j] # next[j] 는 p[j]와 같은 새로 시작하는 지점임.. 다시 시작해 봅시다..
 
     i, j = i + 1, j + 1
     next[i] = j
@@ -138,16 +136,18 @@ print(next)
 # 매칭
 i = j = 0
 while i < n:
-    while j >= 0 and p[j] != t[i]:
+    while j >= 0 and p[j] != t[i]: # 매칭 안되면 전처리와 같이 j를 새로 시작시킴
         j = next[j]
 
     i, j = i + 1, j + 1
 
-    if j == m:
+    if j == m: # j가 m과 같아졌다면, 원하는 값이 찾아진 것임.
         print(i - j, t[:i - j], t[i - j:i - j + m], t[i - j + m:])
         break
 
 ```
+
+* 사실 뭔소린지 모르겠다....
 
 
 

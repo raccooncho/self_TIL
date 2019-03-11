@@ -1,30 +1,80 @@
-# p = 'abcdabcef'                                                                       # pattern
-# t = 'alksdabcdabcflaskjflkabcdjsaflkjasdkdsajfabcdabceflksadjabcdaksfjffsdaf'      # text
+import sys
+sys.stdin = open('input1.txt', 'r')
+from copy import deepcopy
 
-
-# m, n = len(p), len(t)
-# next = [0] * (m + 1) # 편의상 p의 길이보다 1 긴(인덱스 0을 버리기 위함..) 리스트를 생성
-
-# # 전처리
-# next[0] = -1 # 맨 앞을 시작의 의미로 -1로 설정
-# i, j = 0, -1
-# while i < m:
-#     while j >= 0 and p[j] != p[i]: # j 가 시작값인 -1이 되지 않기 위함..
-#         j = next[j]
-
-#     i, j = i + 1, j + 1
-#     next[i] = j
-
-# print(next)
-
-# # 매칭
-# i = j = 0
-# while i < n:
-#     while j >= 0 and p[j] != t[i]:
-#         j = next[j]
-
-#     i, j = i + 1, j + 1
-
-#     if j == m:
-#         print(i - j, t[:i - j], t[i - j:i - j + m], t[i - j + m:])
-#         break
+T = int(input())
+for t in range(T):
+    N = int(input())
+    maxnos = []
+    for n in range(N):
+        row = input().split()
+        maxnos += [row]
+    core = []
+    out_core = []
+    for i in range(N):
+        for j in range(N):
+            if maxnos[i][j] == '1':
+                if i*j == 0 or i == N-1 or j == N-1:
+                    out_core.append([i, j])
+                else:
+                    core.append([i, j])
+    n = 0
+    answer = []
+    direction = [0, 1, 2, 3, 4] # none, top, down, right, left
+    def findnod(c, n, a, ta, cnt):
+        if n == len(core):
+            answer.append([a, cnt])
+        else:
+            for i in range(5):
+                tas = deepcopy(ta)
+                y, x = c[n][0], c[n][1]
+                cn = cnt
+                aa = a
+                if i == 1:
+                    while y > 0:
+                        y -= 1
+                        if tas[y][x] == '0':
+                            tas[y][x] == '2'
+                            cn += 1
+                        else:
+                            return
+                elif i == 2:
+                    while y < N-1:
+                        y += 1
+                        if tas[y][x] == '0':
+                            tas[y][x] == '2'
+                            cn += 1
+                        else:
+                            return
+                elif i == 3:
+                    while x > 0:
+                        x -= 1
+                        if tas[y][x] == '0':
+                            tas[y][x] == '2'
+                            cn += 1
+                        else:
+                            return
+                elif i == 4:
+                    while x < N-1:
+                        x += 1
+                        if tas[y][x] == '0':
+                            tas[y][x] == '2'
+                            cn += 1
+                        else:
+                            return
+                aa = a + [i]
+                findnod(c, n+1, aa, tas, cn)
+    findnod(core, 0, [], maxnos, 0)
+    result = []
+    minsz = len(core)
+    dt = []
+    for a in answer:
+        if a[0].count(0) < minsz:
+            minsz = len(a[0])
+            result = [a[1]]
+            dt = [a]
+        elif a[0].count(0) == minsz:
+            result.append(a[1])
+            dt.append(a)
+    print(dt)
+    print(f'#{t+1} {min(result)}')

@@ -71,7 +71,6 @@ for i in range(len(arr) - 1): # range = [0, 1, 2, 3]
 ### 4. 퀵 소트 (quick sort)
 
 ```python
-
 def qsort(nums):
     if len(nums) <= 1: # 길이가 1이 되면 구분이 의미가 없으므로 현재 값을 리턴하고 함수(재귀)를 종료한다.
         return nums
@@ -96,3 +95,72 @@ def qsort(nums):
 * 기준점보다 작은것은 less, 큰 것은 more, 같은 것은 equal리스트에 포함시킨다.
 * less와 more리스트는 qsort로 재귀시킨다.
 
+
+
+### 5. 삽입정렬 (Insert sort)
+
+```python
+def isort(A):
+    lena = len(A)
+    for i in range(1, len(A)):
+        I = A.pop(i)
+        for j in range(i):
+            if I < A[j]:
+                A.insert(j, I)
+                break
+        if len(A) != lena:
+            A.insert(i, I)
+    return A
+```
+
+* 주어진 리스트의 크기가 적당히 작을 경우 효율적이다.
+* 사실 퀵소트의 가짓수를 줄이기 위해서 작은 범위의 리스트에 대해선 삽입정렬을 하는 것이 효율적이다.
+
+```python
+def qsort(nums):
+    if len(nums) <= 5: 
+        return isort(nums)
+    pivot = nums[len(nums) // 2] 
+    less = []
+    more = []
+    equal = []
+    for a in nums:
+        if a < pivot:
+            less.append(a)
+        elif a > pivot:
+            more.append(a)
+        else:
+            equal.append(a) 
+    return qsort(less) + equal + qsort(more) 
+```
+
+
+
+### 6. 병합정렬 (Merge sort)
+
+```python
+def merge_sort(A):
+    if len(A) <= 1:  # 길이가 1이 되면 리턴한다.
+        return A
+    M = len(A) >> 1    # 위치상 중간을 기준으로
+    L = merge_sort(A[M:])   # 반으로 쪼개서 왼쪽 오른쪽을 각각 다시 머지 소트 한다.
+    R = merge_sort(A[:M])
+    return merge(L, R)  # 각각 머지소트한 왼쪽 오른쪽 리스트를 머지로 합병한다.
+
+def merge(l, r):
+    result = []
+    while len(l) > 0 and len(r) > 0:  # 둘중 하나의 리스트가 다 빌때까지
+        if l[0] <= r[0]:  # 0번 인덱스가 작은 것을 result에 append시킨다.
+            result.append(l.pop(0))
+        else:
+            result.append(r.pop(0))
+    if len(l) > 0:   # 남은 리스트를 result 에 합병시킨다.
+        result += l
+    else:
+        result += r
+    return result
+```
+
+* 가운데 인덱스를 중심으로 계속 반으로 나눈 뒤
+* 크기순으로 정렬해가며 정렬하는 방법이다.
+* n log n의 속도를 보장하지만 파이썬에서는 잦은 슬라이싱 때문에 효율이 좋지 못할 수 있다.
