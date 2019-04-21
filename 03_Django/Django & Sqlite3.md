@@ -1,6 +1,156 @@
-### Django & Sqlite3
+# Django & Sqlite3
+
+### SQL Basic
+
+* 데이터베이스 : 체계화된 데이터의 모임
+* RDBMS(관계형 데이터베이스 관리 시스템) 
+* 스키마(scheme) : 자료의 구조, 표현방법, 관계 등을 정의한 구조
+  * 데이터베이스의 구조와 제약조건에 관련한 전반적인 명세를 기술한 것
+* SQL(Structured Query Language) : RDBMS의 데이터를 관리하기 위해 설계된 특수목적의 프로그래밍 언어이다.
+  * DDL(데이터 정의 언어) : 데이터를 정의하기 위한 언어 ( CREATE, DROP, ALTRE )
+  * DML(데이터 조작 언어) : 데이터를 저장, 수정, 삭제, 조회하기 위한 언어 ( INSERT, UPDATE, DELETE, SELECT )
+  * DCL(데이터 제어 언어) : :데이터베이스 사용자의 권한제어를 위해 사용되는 언아 ( GRANT, REVOKE, COMMIT, ROLLBACK )
+
+```sqlite
+.mode csv
+.import hellodb.csv examples
+```
+
+* 전체 선택 하기
+
+```sqlite
+SELECT * FROM examples;
+```
+
+* 예쁘게 보려면
+
+```sqlite
+.headers on
+.mode column
+```
+
+* table 생성하기
+
+```sqlite
+CREATE TABLE classmates (
+id INT PRIMARY KEY, name TEXT);
+```
+
+* 테이블 목록 조회 및 특정 테이블 스키마 조회
+
+```sqlite
+.table
+.schema classmates
+```
+
+* 특정 table 삭제
+
+```sqlite
+DROP TABLE classmates;
+```
+
+* data 추가 (INSERT)
+
+```sqlite
+INSERT INTO classmates (name, age)
+VALUES ('홍길동', 23);
+```
+
+* 모든 열에 데이터를 추가할 경우에는 column을 명시할 필요가 없다.
+
+```sqlite
+INSERT INTO classmates VALUES ('홍길동', 23);
+```
+
+* id같이 필수적이고 중복되면 안되는 값에 AUTOINCREMENT를 사용할 수 있다 (INTEGER에서만 사용 가능)
+
+```sqlite
+CREATE TABEL classmates (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    age INT NOT NULL,
+    address TEXT NOT NULL
+);
+```
+
+* data 가져오기 (SELECT)
+
+```sqlite
+SELECT * FROM classmates;
+SELCET name, age FROM classmates;
+```
+
+* 정해진 숫자만 가져오기 (LIMIT)
+
+```sqlite
+SELECT id, name FROM classmates LIMIT 3;
+```
+
+* 가져오는 값의 인덱스를 정하기 (OFFSET)
+
+```sqlite
+SELECT id, name FROM classmates LIMIT 3 OFFSET 2;
+```
+
+* 조건을 부여하기 (WHERE)
+
+```sqlite
+SELECT id, name FROM classmates WHERE address="서울";
+```
+
+* data 삭제 (DELETE)
+
+```sqlite
+DELETE FROM classmates WHERE id=3;
+```
+
+* data 수정 (UPDATE)
+
+```sqlite
+UPDATE classmates SET name="홍길동", address="제주도" WHERE id=4;
+```
+
+* 갯수 세기 (COUNT)
+
+```sqlite
+SELECT COUNT(*) FROM users;
+```
+
+* 표현식 
+  * AVG, SUM, MIN, MAX :숫자 일때만 사용 가능하다
+
+  ```sqlite
+  SELECT first_name, MAX(balance) FROM users;
+  SELECT AVG(balance) FROM users WHERE age >= 30;
+  ```
+  * LIKE  : 패턴을 비교한다.
+
+  ```sqlite
+  SELECT * FROM users WHERE age LIKE '2%';
+  ```
+
+| %    | 2%      | 2로 시작하는 값                               |
+| ---- | ------- | --------------------------------------------- |
+|      | %2      | 2로 끝나는 값                                 |
+|      | %2%     | 2가 들어가는 값                               |
+| _    | _2%     | 아무 값이나 들어가고 두번째가 2로 시작하는 값 |
+|      | 1___    | 1로 시작하고 4자리인 값                       |
+|      | `2_%_%` | 2로 시작하고 적어도 3자리인 값                |
+
+* 정렬(ORDER)
+
+```sqlite
+# 나이순으로 오름차순 정렬하여 상위 10개만 출력
+SELECT * FROM users ORDER BY age ASC LIMIT 10;
+# 나이순, 성 순 으로 오름차순 정렬하여 상위 10개만 출력
+SELECT * FROM users ORDER BY age, last_name ASC LIMIT 10;
+# 계좌잔액순으로 내림차순 정렬하여 이름만 10개 출력
+SELECT first_name, last_name FROM users ORDER BY balance DESC LIMIT 10;
+```
 
 
+
+### Django
 
 * pip install django_extensions
 * python manage.py shell_plus
